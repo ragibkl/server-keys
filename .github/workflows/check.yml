@@ -1,0 +1,16 @@
+name: check
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: install keytree
+        run: |
+          curl -fsSL -o keytree https://github.com/ragibkl/keytree/releases/latest/download/keytree_linux_amd64
+          chmod +x keytree
+      - run: ./keytree check keytree.yaml

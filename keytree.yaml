@@ -1,0 +1,26 @@
+# Who can log in to which server, as which account.
+# Read by keytree: https://github.com/ragibkl/keytree
+version: 1
+
+users:
+  ragib:
+    github: ragibkl
+  anas:
+    github: anasazmi571
+
+groups:
+  admins: [ragib]
+
+# Mirrors homelab-vm/ssh-users/*.txt: those lists gave root on every server
+# of the network (the hostname prefix).
+servers:
+  "vmbr0-*":
+    root:
+      groups: [admins]
+  "vmbr1-*":
+    root:
+      groups: [admins]
+  "vmbr2-*":
+    root:
+      groups: [admins]
+      users: [anas]
