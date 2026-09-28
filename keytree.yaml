@@ -24,3 +24,9 @@ servers:
     root:
       groups: [admins]
       users: [anas]
+
+  # Bancuh DNS servers (sg/jp/fr/us-dnsN.bancuh.com). Their hostnames vary
+  # by provider, so they're installed with --name sg-dns1 etc.
+  "*-dns[0-9]":
+    root:
+      groups: [admins]
