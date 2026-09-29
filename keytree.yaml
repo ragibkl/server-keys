@@ -20,6 +20,11 @@ servers:
   "vmbr1-*":
     root:
       groups: [admins]
+  vmbr1-ubuntu-coder:
+    # The login user from cloud-init. Its cloud-init keys stay as they are;
+    # keytree adds the admins' current GitHub keys alongside them.
+    ragib:
+      groups: [admins]
   "vmbr2-*":
     root:
       groups: [admins]
