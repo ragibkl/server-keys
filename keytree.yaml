@@ -7,19 +7,25 @@ users:
     github: ragibkl
   anas:
     github: anasazmi571
+  # Scheduled read-only checks from ragibkl/infra (jobs/). The private key
+  # lives only in that repo's encrypted secrets; remove this to revoke it.
+  infra-jobs:
+    keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+MLzZf0wcwk+jqb5vUmthyX8FPfD/m1qBIh/78fZYD infra-jobs (ragibkl/infra scheduled jobs)
 
 groups:
   admins: [ragib]
+  automation: [infra-jobs]
 
 # Mirrors homelab-vm/ssh-users/*.txt: those lists gave root on every server
 # of the network (the hostname prefix).
 servers:
   "vmbr0-*":
     root:
-      groups: [admins]
+      groups: [admins, automation]
   "vmbr1-*":
     root:
-      groups: [admins]
+      groups: [admins, automation]
   vmbr1-ubuntu-coder:
     # The login user from cloud-init. Its cloud-init keys stay as they are;
     # keytree adds the admins' current GitHub keys alongside them.
@@ -27,11 +33,11 @@ servers:
       groups: [admins]
   "vmbr2-*":
     root:
-      groups: [admins]
+      groups: [admins, automation]
       users: [anas]
 
   # Bancuh DNS servers (sg/jp/fr/us-dnsN.bancuh.com). Their hostnames vary
   # by provider, so they're installed with --name sg-dns1 etc.
   "*-dns[0-9]":
     root:
-      groups: [admins]
+      groups: [admins, automation]
